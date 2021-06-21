@@ -15,7 +15,7 @@ A shell source file with some useful aliases for ctfs
 | `scan`   | Scan a target with [rustscan][1], ip as first argument, addtional arguments are passed through |
 | `ferox`  | Scan a web server with [feroxbuster][2], url as first argument, optional wordlist as second (default `/usr/share/seclists/Discovery/Web-Content/common.txt`), any additional arguments can be added after the second |
 
-Outputs for all scanning commands are saved to file called "${name of command}-$(date +%F-%T)"
+Outputs for all scanning commands are saved to file called `${name of command}-$(date +%F-%T)`
 
 ### Deps
 [pwncat][0], [rustscan][1], [feroxbuster][2], [seclists][3]
