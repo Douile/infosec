@@ -21,7 +21,7 @@ rev() {
 
 scan() {
   # shellcheck disable=SC2068,SC3057
-  command rustscan -u 5000 -t 2000 --accessible -a $1 ${@:1} -- -A | tee "scan-$(date +%F-%T)"
+  command rustscan -u 5000 --accessible -a $1 ${@:1} -- -A | tee "scan-$(date +%F-%T)"
 }
 
 ferox() {
@@ -32,5 +32,5 @@ ferox() {
 
 PS1="(\$(tunip \"No vpn\"))${PS1}"
 
-printf "\033[1;32m\033[40mUseful sources for hak\033[0m\n"
+printf "\033[1;32m\033[40mUseful sources for hak\033[0m: "
 tunip "Not connected to a vpn!"
