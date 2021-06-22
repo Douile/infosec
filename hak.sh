@@ -21,7 +21,7 @@ rev() {
 
 scan() {
   # shellcheck disable=SC2068,SC3057
-  command rustscan -u 5000 --accessible -a $1 ${@:1} -- -A | tee "scan-$(date +%F-%T)"
+  command rustscan ${@:2} --accessible -a $1 -- -A | tee "scan-$(date +%F-%T)"
 }
 
 ferox() {
