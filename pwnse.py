@@ -5,12 +5,18 @@ def transform(data, pse):
     def escape(data):
         return data.replace(b'$', b'\\$').replace(b'`',b'\\`')
     def upload(parts, pse):
+        if len(parts) < 2:
+            print('You must specify a file to upload')
+            return b''
         content = None
         with open(parts[1], 'rb') as f:
             content = f.read()
         print('Uploading {}...'.format(parts[1]))
         return b'cat <<EOS > ' + parts[1] + b'\n' + escape(content) + b'\nEOS\n'
     def download(parts, pse):
+        if len(parts) < 3:
+            print('You must specify a url to download and a filename to save to')
+            return b''
         import requests
         r = requests.get(parts[1])
         print('Downloading {} to {}...'.format(parts[1], parts[2]))
@@ -46,7 +52,13 @@ def transform(data, pse):
     if data.startswith(b'@'):
         parts = data[1:-1].split(b' ')
         if parts[0] in cmds:
-            return cmds[parts[0]](parts, pse)
+            r = b''
+            try:
+                r = cmds[parts[0]](parts, pse)
+            except:
+                import traceback
+                traceback.print_exc()
+            return r
         elif parts[0].startswith(b'@'):
             return b' '.join(parts) + b'\n'
         else:
